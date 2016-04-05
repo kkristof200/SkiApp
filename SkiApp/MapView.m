@@ -144,10 +144,12 @@
     
     allTimeSession = [[NSUserDefaults standardUserDefaults] objectForKey:@"AllTimeSession"];
     
+#warning [ToDo] KK for Myself - Check later "allTimeSession.allTimeDistanceAverage" and "allTimeSession.numberOfSessions". Maybe not working correctly.
+    
     allTimeSession.allTimeDistance += newSession.distanceInSession;
     allTimeSession.allTimeSpeedAverage = (allTimeSession.allTimeSpeedAverage * allTimeSession.numberOfSessions + newSession.speedAverage) / (allTimeSession.numberOfSessions + 1);
-    allTimeSession.numberOfSessions++;
-    allTimeSession.allTimeDistanceAverage = allTimeSession.allTimeDistance / allTimeSession.numberOfSessions;
+    allTimeSession.allTimeDistanceAverage = allTimeSession.allTimeDistance / (allTimeSession.numberOfSessions+1);
+    allTimeSession.numberOfSessions += 1;
     if(allTimeSession.allTimeSpeedMax <= newSession.speedMax) allTimeSession.allTimeSpeedMax = newSession.speedMax;
     
     [[NSUserDefaults standardUserDefaults] setObject:allTimeSession forKey:@"AllTimeSession"];
