@@ -12,7 +12,10 @@
 #import "Session.h"
 #import "ViewController.h"
 #import "AllTimeSession.h"
+//TODO: (FOC) re-structure the imports
 
+//TODO: (FOC) add empty spaces as it follows (after commas, after ')', before & after operations)
+//@interface MapView () <SKPositionerServiceDelegate, NSCoding>
 @interface MapView ()<SKPositionerServiceDelegate,NSCoding>
 {
     CLLocationManager *locationManager;
@@ -23,18 +26,18 @@
     Session *newSession;
     int numberOfPositionUpdatesWithSpeed;
 }
-
+//TODO: (FOC) use properties
 @end
 
 @implementation MapView
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewDidLoad { //TODO: (FOC) use same coding standards around the app. Apple uses Egyptian style
+    [super viewDidLoad];//TODO: (FOC) always add a newline between calls of super and other logics
     positionsArray = [[NSMutableArray alloc]init];
     
     [self initValues];
     [self initMap];
-    [self initButtons];
+    [self initButtons];//TODO:(FOC) keep same type of logics in the same 'visual block'. Shortly, the new-line below is not needed
     
     [self initPolyLine];
     
@@ -62,7 +65,7 @@
 - (void)initMap
 {
     mapView = [[SKMapView alloc] initWithFrame:CGRectMake( 0.0f, 0.0f,  CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame) )];
-    [self.view addSubview:mapView];
+    [self.view addSubview:mapView]; //TODO: (FOC) always add a newline between calls of addSubview and other logics. In this case, you could add it as subview at the end of the method
     mapView.settings.rotationEnabled = NO;
     mapView.settings.followUserPosition = YES;
     mapView.settings.headingMode = SKHeadingModeRotatingMap;
@@ -71,7 +74,7 @@
 
 - (void)initButtons
 {
-    for (int i = 0; i<2; i++)
+    for (int i = 0; i<2; i++)//TODO: (FOC) add empty spaces before & after operations
     {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         
@@ -92,6 +95,7 @@
             button.frame = CGRectMake(10, 60, 100, 50);
         }
         [button setBackgroundColor:[UIColor redColor]];
+        //TODO: (FOC) always add a newline between calls of addSubview and other logics
         [self.view addSubview:button];
     }
 }
@@ -110,10 +114,14 @@
     NSData *data;
     
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"SessionArray"])
-    {
+    { //TODO: (FOC) use tabs to allign your code, or ctrl+i, after selecting it
+        //TODO: (FOC) you get the same object for key twice
+        //TODO: (FOC) fix: populate 'data', if no object is received, it will be nil. Check using 'data'
     data = [[NSUserDefaults standardUserDefaults] objectForKey:@"SessionArray"];
     sessionArray = [[NSKeyedUnarchiver unarchiveObjectWithData:data] mutableCopy];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        //TODO: (FOC) synchronize Writes any modifications to the persistent domains to disk and updates all unmodified persistent domains to what is on disk.
+        //TODO: (FOC) here, you are only requesting objects from user defaults, not modifying them
     }
     
     [sessionArray addObject:newSession];
@@ -133,6 +141,7 @@
     
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"AllTimeSession"])
     {
+        //TODO: (FOC) you are populating a nil object and saving nil into the user defaults
         allTimeSession.allTimeDistance = 0;
         allTimeSession.allTimeSpeedAverage = 0;
         allTimeSession.allTimeSpeedMax = 0;
@@ -142,7 +151,7 @@
         [[NSUserDefaults standardUserDefaults] setObject:allTimeSession forKey:@"AllTimeSession"];
     }
     
-    allTimeSession = [[NSUserDefaults standardUserDefaults] objectForKey:@"AllTimeSession"];
+    allTimeSession = [[NSUserDefaults standardUserDefaults] objectForKey:@"AllTimeSession"]; //TODO: (FOC) move this line above the if, check the if using 'allTimeSession'
     
 #warning [ToDo] KK for Myself - Check later "allTimeSession.allTimeDistanceAverage" and "allTimeSession.numberOfSessions". Maybe not working correctly.
     
@@ -151,8 +160,9 @@
     allTimeSession.allTimeDistanceAverage = allTimeSession.allTimeDistance / (allTimeSession.numberOfSessions+1);
     allTimeSession.numberOfSessions += 1;
     if(allTimeSession.allTimeSpeedMax <= newSession.speedMax) allTimeSession.allTimeSpeedMax = newSession.speedMax;
-    
+    //TODO: (FOC) always use '{' '}' This way you avoid a lot of mistakes
     [[NSUserDefaults standardUserDefaults] setObject:allTimeSession forKey:@"AllTimeSession"];
+    //TODO: (FOC) should call synchronize since you are setting something
 }
 
 - (void)initPolyLine
@@ -173,9 +183,9 @@
     
 #warning Updating Values
     newSession.distanceInSession += [lastLocation distanceFromLocation:currentLocation];
-    if (currentLocation.speed>0)
+    if (currentLocation.speed>0)//TODO: (FOC) add empty spaces before & after operations e.g. currentLocation.speed > 0
     {
-        if (numberOfPositionUpdatesWithSpeed>0)
+        if (numberOfPositionUpdatesWithSpeed>0)//TODO: (FOC) add empty spaces before & after operations
         {
             newSession.speedAverage *= numberOfPositionUpdatesWithSpeed;
         }
@@ -213,8 +223,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    //TODO: (FOC) this method can be deleted, since you don't / won't use it
 }
 
+//TODO: (FOC) this method can be deleted, since you don't / won't use it:
 /*
 #pragma mark - Navigation
 

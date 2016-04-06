@@ -9,7 +9,7 @@
 #import "Session.h"
 #import "AllTimeSession.h"
 #import "Statistics.h"
-
+//TODO: (FOC) apply comments from MapView.m
 @interface Statistics ()
 {
     IBOutlet UILabel *sessionDateLabel;
@@ -98,7 +98,7 @@
 
 - (IBAction)showPreviousSession:(id)sender
 {
-    if (sessionNumber==0)
+    if (sessionNumber==0)//TODO: (FOC) add empty spaces before & after operations e.g.  sessionNumber == 0
     {
         sessionNumber = sessionArray.count - 1;
     }

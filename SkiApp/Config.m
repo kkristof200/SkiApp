@@ -7,7 +7,7 @@
 //
 
 #import "Config.h"
-
+//TODO: (FOC) since you are using this only for the defines, you can keep only the header, and you can delete the class declaration(s)
 @implementation Config
 
 @end

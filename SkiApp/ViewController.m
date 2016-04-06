@@ -10,7 +10,7 @@
 #import "Backendless.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
-
+//TODO: (FOC) apply comments from MapView.m
 @interface ViewController ()
 
 @end
@@ -19,10 +19,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //TODO: (FOC) always add a newline between calls of super and other logics
     CGRect viewFrame = self.view.bounds;
     // Do any additional setup after loading the view, typically from a nib.
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] initWithFrame:CGRectMake(0, viewFrame.size.height - 50, viewFrame.size.width, 50)];
     [loginButton setBackgroundImage:[UIImage imageNamed:@"trans1.png"] forState:UIControlStateNormal];
+    //TODO: (FOC) always add a newline between calls of addSubview and other logics
     [self.view addSubview:loginButton];
 }
 
@@ -53,6 +55,7 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    //TODO: (FOC) this method can be deleted, since you don't / won't use it
 }
 
 @end

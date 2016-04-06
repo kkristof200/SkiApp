@@ -11,6 +11,17 @@
 #import "Backendless.h"
 #import <SKMaps/SKMaps.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+//TODO: (FOC) please re-structure the imports
+//TODO: (FOC) e.g.
+// class' header
+// -new line-
+// SDKs
+// -new line-
+// other model files
+// -new line-
+// custom view controllers
+// -new line-
+// custom views/other ui
 
 @interface AppDelegate ()
 
@@ -59,7 +70,7 @@
                                     @"first_name": @"first_name",
                                     @"last_name" : @"last_name"
                                     };
-    
+//TODO: (FOC) could use a define instead of these if 0
 #if 0 // sync
     
     @try {
