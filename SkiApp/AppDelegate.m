@@ -7,10 +7,13 @@
 //
 
 #import "AppDelegate.h"
-#import "Config.h"
-#import "Backendless.h"
+
 #import <SKMaps/SKMaps.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+
+#import "Backendless.h"
+#import "Config.h"
+
 //TODO: (FOC) please re-structure the imports
 //TODO: (FOC) e.g.
 // class' header
@@ -28,7 +31,6 @@
 @end
 
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [backendless initApp:kBackendlessAppId secret:kBackendlessIosSecretKey version:kBackEndlessVersion];
@@ -70,62 +72,16 @@
                                     @"first_name": @"first_name",
                                     @"last_name" : @"last_name"
                                     };
+    
 //TODO: (FOC) could use a define instead of these if 0
-#if 0 // sync
     
     @try {
         BackendlessUser *user = [backendless.userService loginWithFacebookSDK:token fieldsMapping:fieldsMapping];
-#if 0
-        [backendless.userService logout];
-#endif
+        NSLog(@"USER: %@", user);
     }
-    @catch (Fault *fault)
-    {
+    @catch (Fault *fault) {
+        NSLog(@"openURL: %@", fault);
     }
-    
-#else // async
-    
-    [backendless.userService
-     loginWithFacebookSDK:token
-     fieldsMapping:fieldsMapping
-     response:^(BackendlessUser *user) {
-         NSLog(@"USER (0): %@", user);
-         
-         @try {
-#if 0
-             Task *task = [Task new];
-             task.title = [backendless randomString:12];
-             [user setProperty:@"task" object:task];
-             user = [backendless.userService update:user];
-             NSLog(@"USER (1): %@", user);
-#endif
-#if 0
-             [user setProperty:@"currentUser" object:backendless.userService.currentUser];
-             user = [backendless.userService update:user];
-             NSLog(@"USER (2): %@", user);
-#endif
-#if 0
-             Task *task = [Task new];
-             task.title = [backendless randomString:12];
-             Task *saved = [backendless.data save:task];
-             id result = [backendless.data.permissions grantForUser:user.objectId entity:saved operation:DATA_UPDATE];
-             NSLog(@"GRANT): %@", result);
-             
-#endif
-#if 0
-             [backendless.userService logout];
-             NSLog(@"LOGOUT");
-#endif
-         }
-         @catch (Fault *fault) {
-             NSLog(@"%@", fault);
-         }
-     }
-     error:^(Fault *fault) {
-         NSLog(@"openURL: %@", fault);
-     }];
-    
-#endif
     
     return handled;
 }

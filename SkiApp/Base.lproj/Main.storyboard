@@ -84,7 +84,7 @@
         <!--All Time-->
         <scene sceneID="b2H-En-BwX">
             <objects>
-                <viewController id="dCh-Zf-ADf" customClass="Statistics" sceneMemberID="viewController">
+                <viewController id="dCh-Zf-ADf" customClass="StatisticsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Gq-JD-HZq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -185,7 +185,7 @@
         <!--Last Session-->
         <scene sceneID="8iS-wp-Qco">
             <objects>
-                <viewController id="MRy-2a-Acd" customClass="Statistics" sceneMemberID="viewController">
+                <viewController id="MRy-2a-Acd" customClass="StatisticsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="a8g-TD-FME">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -291,10 +291,10 @@
             </objects>
             <point key="canvasLocation" x="724" y="1024"/>
         </scene>
-        <!--Map View-->
+        <!--Map View Controller-->
         <scene sceneID="Fcj-Wu-5da">
             <objects>
-                <viewController id="jx5-Ix-tbY" customClass="MapView" sceneMemberID="viewController">
+                <viewController id="jx5-Ix-tbY" customClass="MapViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gbw-FF-n0Q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

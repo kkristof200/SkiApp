@@ -48,7 +48,6 @@
 		C0BE440A1CAE73770089F794 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BE44091CAE73770089F794 /* SystemConfiguration.framework */; };
 		C0BE440C1CAE73880089F794 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BE440B1CAE73880089F794 /* libsqlite3.tbd */; };
 		C0BE440E1CAE73940089F794 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BE440D1CAE73940089F794 /* libz.tbd */; };
-		C0CA9E921CA53F1900C97EA6 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CA9E911CA53F1900C97EA6 /* Config.m */; };
 		C0F389601C7F5B0400B30811 /* SKMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F3895F1C7F5B0400B30811 /* SKMaps.framework */; };
 		C0F389621C7F5B3400B30811 /* SKMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C0F389611C7F5B3400B30811 /* SKMaps.bundle */; };
 		C0F389641C7F5B8900B30811 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F389631C7F5B8900B30811 /* UIKit.framework */; };
@@ -60,8 +59,8 @@
 		C0F389701C7F5BBF00B30811 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F3896F1C7F5BBF00B30811 /* CoreMotion.framework */; };
 		C0F389731C7F5D6500B30811 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F389711C7F5D4100B30811 /* libz.1.dylib */; };
 		C0F389751C7F5DA100B30811 /* libc++.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F389741C7F5DA100B30811 /* libc++.1.dylib */; };
-		C0F389781C7F5F9300B30811 /* MapView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F389771C7F5F9300B30811 /* MapView.m */; };
-		C0F3897C1C7F648200B30811 /* Statistics.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F3897B1C7F648200B30811 /* Statistics.m */; };
+		C0F389781C7F5F9300B30811 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F389771C7F5F9300B30811 /* MapViewController.m */; };
+		C0F3897C1C7F648200B30811 /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F3897B1C7F648200B30811 /* StatisticsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -305,7 +304,6 @@
 		C0BE440B1CAE73880089F794 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		C0BE440D1CAE73940089F794 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		C0CA9E901CA53F1900C97EA6 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
-		C0CA9E911CA53F1900C97EA6 /* Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
 		C0F3895F1C7F5B0400B30811 /* SKMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SKMaps.framework; sourceTree = "<group>"; };
 		C0F389611C7F5B3400B30811 /* SKMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SKMaps.bundle; sourceTree = "<group>"; };
 		C0F389631C7F5B8900B30811 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -317,10 +315,10 @@
 		C0F3896F1C7F5BBF00B30811 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		C0F389711C7F5D4100B30811 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = /usr/lib/libz.1.dylib; sourceTree = "<absolute>"; };
 		C0F389741C7F5DA100B30811 /* libc++.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.1.dylib"; path = "/usr/lib/libc++.1.dylib"; sourceTree = "<absolute>"; };
-		C0F389761C7F5F9300B30811 /* MapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapView.h; sourceTree = "<group>"; };
-		C0F389771C7F5F9300B30811 /* MapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapView.m; sourceTree = "<group>"; };
-		C0F3897A1C7F648200B30811 /* Statistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Statistics.h; sourceTree = "<group>"; };
-		C0F3897B1C7F648200B30811 /* Statistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Statistics.m; sourceTree = "<group>"; };
+		C0F389761C7F5F9300B30811 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		C0F389771C7F5F9300B30811 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		C0F3897A1C7F648200B30811 /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
+		C0F3897B1C7F648200B30811 /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -404,7 +402,6 @@
 			children = (
 				C0F389791C7F5F9E00B30811 /* Classes */,
 				C0CA9E901CA53F1900C97EA6 /* Config.h */,
-				C0CA9E911CA53F1900C97EA6 /* Config.m */,
 				C030C79A1C773BFC008CBD83 /* Main.storyboard */,
 				C030C79D1C773BFC008CBD83 /* Assets.xcassets */,
 				C030C79F1C773BFC008CBD83 /* LaunchScreen.storyboard */,
@@ -894,10 +891,10 @@
 			children = (
 				C030C7941C773BFC008CBD83 /* AppDelegate.h */,
 				C030C7951C773BFC008CBD83 /* AppDelegate.m */,
-				C0F389761C7F5F9300B30811 /* MapView.h */,
-				C0F389771C7F5F9300B30811 /* MapView.m */,
-				C0F3897A1C7F648200B30811 /* Statistics.h */,
-				C0F3897B1C7F648200B30811 /* Statistics.m */,
+				C0F389761C7F5F9300B30811 /* MapViewController.h */,
+				C0F389771C7F5F9300B30811 /* MapViewController.m */,
+				C0F3897A1C7F648200B30811 /* StatisticsViewController.h */,
+				C0F3897B1C7F648200B30811 /* StatisticsViewController.m */,
 				C030C7971C773BFC008CBD83 /* ViewController.h */,
 				C030C7981C773BFC008CBD83 /* ViewController.m */,
 				C0BE432E1CADCF460089F794 /* Objects */,
@@ -1046,11 +1043,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0CA9E921CA53F1900C97EA6 /* Config.m in Sources */,
 				C030C7991C773BFC008CBD83 /* ViewController.m in Sources */,
-				C0F3897C1C7F648200B30811 /* Statistics.m in Sources */,
+				C0F3897C1C7F648200B30811 /* StatisticsViewController.m in Sources */,
 				C023ED331C945F2400F614D9 /* Session.m in Sources */,
-				C0F389781C7F5F9300B30811 /* MapView.m in Sources */,
+				C0F389781C7F5F9300B30811 /* MapViewController.m in Sources */,
 				C030C7961C773BFC008CBD83 /* AppDelegate.m in Sources */,
 				C0BE43311CAE6A520089F794 /* Person.m in Sources */,
 				C030C7931C773BFC008CBD83 /* main.m in Sources */,

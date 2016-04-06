@@ -1,5 +1,5 @@
 //
-//  MapView.h
+//  StatisticsViewController.h
 //  SkiApp
 //
 //  Created by Kovács Kristóf on 25/02/16.
@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-//TODO: (FOC) re-name this into something more suggestive: MapViewController
+//TODO: (FOC) re-name this into something more suggestive: StatisticsViewController
 // that's why Xcode automatically adds the suffix
-@interface MapView : UIViewController
+@interface StatisticsViewController : UIViewController
 
 @end

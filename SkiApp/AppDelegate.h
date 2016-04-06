@@ -11,7 +11,6 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
 //TODO: (FOC) should never have any two consecutive empty new lines 
 @end
 
