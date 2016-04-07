@@ -16,11 +16,19 @@
 		C030C7A11C773BFC008CBD83 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C030C79F1C773BFC008CBD83 /* LaunchScreen.storyboard */; };
 		C030C7AC1C773BFC008CBD83 /* SkiAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C030C7AB1C773BFC008CBD83 /* SkiAppTests.m */; };
 		C030C7B71C773BFC008CBD83 /* SkiAppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C030C7B61C773BFC008CBD83 /* SkiAppUITests.m */; };
-		C030C7C61C773CE3008CBD83 /* skiAppBg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C030C7C51C773CE3008CBD83 /* skiAppBg.jpg */; };
-		C030C7C81C773E35008CBD83 /* skiAppBg2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C030C7C71C773E35008CBD83 /* skiAppBg2.jpg */; };
 		C030C7CA1C773EBA008CBD83 /* transLight3.png in Resources */ = {isa = PBXBuildFile; fileRef = C030C7C91C773EBA008CBD83 /* transLight3.png */; };
 		C030C7CC1C773EFC008CBD83 /* trans1.png in Resources */ = {isa = PBXBuildFile; fileRef = C030C7CB1C773EFC008CBD83 /* trans1.png */; };
 		C06CBAA41C845D9B00F39CC8 /* FakeRoute.gpx in Resources */ = {isa = PBXBuildFile; fileRef = C06CBAA31C845D9A00F39CC8 /* FakeRoute.gpx */; };
+		C09BA0521CB67B8700F4B038 /* bg4.png in Resources */ = {isa = PBXBuildFile; fileRef = C09BA04D1CB67B8700F4B038 /* bg4.png */; };
+		C09BA0531CB67B8700F4B038 /* bg3.png in Resources */ = {isa = PBXBuildFile; fileRef = C09BA04E1CB67B8700F4B038 /* bg3.png */; };
+		C09BA0541CB67B8700F4B038 /* bg1.png in Resources */ = {isa = PBXBuildFile; fileRef = C09BA04F1CB67B8700F4B038 /* bg1.png */; };
+		C09BA0551CB67B8700F4B038 /* bg0.png in Resources */ = {isa = PBXBuildFile; fileRef = C09BA0501CB67B8700F4B038 /* bg0.png */; };
+		C09BA0561CB67B8700F4B038 /* bg2.png in Resources */ = {isa = PBXBuildFile; fileRef = C09BA0511CB67B8700F4B038 /* bg2.png */; };
+		C09BA0581CB67C2A00F4B038 /* skiAppLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = C09BA0571CB67C2A00F4B038 /* skiAppLogo.png */; };
+		C09BA05C1CB6815100F4B038 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = C09BA0591CB6815100F4B038 /* back.png */; };
+		C09BA05D1CB6815100F4B038 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = C09BA05A1CB6815100F4B038 /* cancel.png */; };
+		C09BA05E1CB6815100F4B038 /* next.png in Resources */ = {isa = PBXBuildFile; fileRef = C09BA05B1CB6815100F4B038 /* next.png */; };
+		C09BA0601CB6823200F4B038 /* statsBg.png in Resources */ = {isa = PBXBuildFile; fileRef = C09BA05F1CB6823200F4B038 /* statsBg.png */; };
 		C0BAAB4D1CB3EE6000597DB2 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BAAB411CB3EE6000597DB2 /* Bolts.framework */; };
 		C0BAAB4E1CB3EE6000597DB2 /* FacebookAudienceNetworkSDK-4_10-for-iOS.docset in Resources */ = {isa = PBXBuildFile; fileRef = C0BAAB431CB3EE6000597DB2 /* FacebookAudienceNetworkSDK-4_10-for-iOS.docset */; };
 		C0BAAB4F1CB3EE6000597DB2 /* FacebookMessengerShareKitSDK-1_3-for-iOS.docset in Resources */ = {isa = PBXBuildFile; fileRef = C0BAAB441CB3EE6000597DB2 /* FacebookMessengerShareKitSDK-1_3-for-iOS.docset */; };
@@ -99,11 +107,19 @@
 		C030C7B21C773BFC008CBD83 /* SkiAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SkiAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C030C7B61C773BFC008CBD83 /* SkiAppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SkiAppUITests.m; sourceTree = "<group>"; };
 		C030C7B81C773BFC008CBD83 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C030C7C51C773CE3008CBD83 /* skiAppBg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = skiAppBg.jpg; sourceTree = "<group>"; };
-		C030C7C71C773E35008CBD83 /* skiAppBg2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = skiAppBg2.jpg; sourceTree = "<group>"; };
 		C030C7C91C773EBA008CBD83 /* transLight3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transLight3.png; sourceTree = "<group>"; };
 		C030C7CB1C773EFC008CBD83 /* trans1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trans1.png; sourceTree = "<group>"; };
 		C06CBAA31C845D9A00F39CC8 /* FakeRoute.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FakeRoute.gpx; sourceTree = "<group>"; };
+		C09BA04D1CB67B8700F4B038 /* bg4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg4.png; sourceTree = "<group>"; };
+		C09BA04E1CB67B8700F4B038 /* bg3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg3.png; sourceTree = "<group>"; };
+		C09BA04F1CB67B8700F4B038 /* bg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg1.png; sourceTree = "<group>"; };
+		C09BA0501CB67B8700F4B038 /* bg0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg0.png; sourceTree = "<group>"; };
+		C09BA0511CB67B8700F4B038 /* bg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg2.png; sourceTree = "<group>"; };
+		C09BA0571CB67C2A00F4B038 /* skiAppLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = skiAppLogo.png; sourceTree = "<group>"; };
+		C09BA0591CB6815100F4B038 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		C09BA05A1CB6815100F4B038 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
+		C09BA05B1CB6815100F4B038 /* next.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = next.png; sourceTree = "<group>"; };
+		C09BA05F1CB6823200F4B038 /* statsBg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = statsBg.png; sourceTree = "<group>"; };
 		C0BAAB411CB3EE6000597DB2 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		C0BAAB431CB3EE6000597DB2 /* FacebookAudienceNetworkSDK-4_10-for-iOS.docset */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "FacebookAudienceNetworkSDK-4_10-for-iOS.docset"; sourceTree = "<group>"; };
 		C0BAAB441CB3EE6000597DB2 /* FacebookMessengerShareKitSDK-1_3-for-iOS.docset */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "FacebookMessengerShareKitSDK-1_3-for-iOS.docset"; sourceTree = "<group>"; };
@@ -441,13 +457,34 @@
 		C030C7C41C773CD3008CBD83 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				C030C7C51C773CE3008CBD83 /* skiAppBg.jpg */,
-				C030C7C71C773E35008CBD83 /* skiAppBg2.jpg */,
+				C09BA0501CB67B8700F4B038 /* bg0.png */,
+				C09BA04F1CB67B8700F4B038 /* bg1.png */,
+				C09BA0511CB67B8700F4B038 /* bg2.png */,
+				C09BA04E1CB67B8700F4B038 /* bg3.png */,
+				C09BA04D1CB67B8700F4B038 /* bg4.png */,
+				C09BA05F1CB6823200F4B038 /* statsBg.png */,
+				C09BA0571CB67C2A00F4B038 /* skiAppLogo.png */,
 				C030C7CB1C773EFC008CBD83 /* trans1.png */,
 				C030C7C91C773EBA008CBD83 /* transLight3.png */,
+				C09BA0591CB6815100F4B038 /* back.png */,
+				C09BA05A1CB6815100F4B038 /* cancel.png */,
+				C09BA05B1CB6815100F4B038 /* next.png */,
 			);
 			name = Images;
 			path = ../SkiApp;
+			sourceTree = "<group>";
+		};
+		C09BA04C1CB67B5500F4B038 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C0F389761C7F5F9300B30811 /* MapViewController.h */,
+				C0F389771C7F5F9300B30811 /* MapViewController.m */,
+				C0F3897A1C7F648200B30811 /* StatisticsViewController.h */,
+				C0F3897B1C7F648200B30811 /* StatisticsViewController.m */,
+				C030C7971C773BFC008CBD83 /* ViewController.h */,
+				C030C7981C773BFC008CBD83 /* ViewController.m */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 		C0BAA8F31CB1A8A000597DB2 /* Frameworks */ = {
@@ -891,12 +928,7 @@
 			children = (
 				C030C7941C773BFC008CBD83 /* AppDelegate.h */,
 				C030C7951C773BFC008CBD83 /* AppDelegate.m */,
-				C0F389761C7F5F9300B30811 /* MapViewController.h */,
-				C0F389771C7F5F9300B30811 /* MapViewController.m */,
-				C0F3897A1C7F648200B30811 /* StatisticsViewController.h */,
-				C0F3897B1C7F648200B30811 /* StatisticsViewController.m */,
-				C030C7971C773BFC008CBD83 /* ViewController.h */,
-				C030C7981C773BFC008CBD83 /* ViewController.m */,
+				C09BA04C1CB67B5500F4B038 /* ViewControllers */,
 				C0BE432E1CADCF460089F794 /* Objects */,
 			);
 			name = Classes;
@@ -1005,20 +1037,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C030C7C61C773CE3008CBD83 /* skiAppBg.jpg in Resources */,
+				C09BA0521CB67B8700F4B038 /* bg4.png in Resources */,
 				C0BAAB521CB3EE6000597DB2 /* FacebookSDKStrings.bundle in Resources */,
+				C09BA0531CB67B8700F4B038 /* bg3.png in Resources */,
+				C09BA05D1CB6815100F4B038 /* cancel.png in Resources */,
+				C09BA0551CB67B8700F4B038 /* bg0.png in Resources */,
 				C06CBAA41C845D9B00F39CC8 /* FakeRoute.gpx in Resources */,
 				C030C7A11C773BFC008CBD83 /* LaunchScreen.storyboard in Resources */,
 				C030C79E1C773BFC008CBD83 /* Assets.xcassets in Resources */,
+				C09BA0601CB6823200F4B038 /* statsBg.png in Resources */,
 				C030C7CC1C773EFC008CBD83 /* trans1.png in Resources */,
 				C0BAAB511CB3EE6000597DB2 /* install_docsets.sh in Resources */,
 				C0BAAB4F1CB3EE6000597DB2 /* FacebookMessengerShareKitSDK-1_3-for-iOS.docset in Resources */,
+				C09BA0581CB67C2A00F4B038 /* skiAppLogo.png in Resources */,
+				C09BA0541CB67B8700F4B038 /* bg1.png in Resources */,
+				C09BA05C1CB6815100F4B038 /* back.png in Resources */,
+				C09BA05E1CB6815100F4B038 /* next.png in Resources */,
 				C0F389621C7F5B3400B30811 /* SKMaps.bundle in Resources */,
 				C030C7CA1C773EBA008CBD83 /* transLight3.png in Resources */,
 				C0BAAB501CB3EE6000597DB2 /* FacebookSDK-4_10-for-iOS.docset in Resources */,
 				C030C79C1C773BFC008CBD83 /* Main.storyboard in Resources */,
-				C030C7C81C773E35008CBD83 /* skiAppBg2.jpg in Resources */,
 				C0BAAB4E1CB3EE6000597DB2 /* FacebookAudienceNetworkSDK-4_10-for-iOS.docset in Resources */,
+				C09BA0561CB67B8700F4B038 /* bg2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

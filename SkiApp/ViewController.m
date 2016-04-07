@@ -14,6 +14,8 @@
 //TODO: (FOC) apply comments from MapView.m
 @interface ViewController ()
 
+@property IBOutlet UIImageView *bgImage;
+
 @end
 
 @implementation ViewController
@@ -27,9 +29,15 @@
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] initWithFrame:CGRectMake(0, viewFrame.size.height - 50, viewFrame.size.width, 50)];
     loginButton.readPermissions = @[@"email"];
     [loginButton setBackgroundImage:[UIImage imageNamed:@"trans1.png"] forState:UIControlStateNormal];
+    [self setRandomBgImage];
     //TODO: (FOC) always add a newline between calls of addSubview and other logics
     
     [self.view addSubview:loginButton];
+}
+
+- (void) setRandomBgImage {
+    int i = arc4random() %5;
+    self.bgImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"bg%i",i]];
 }
 
 @end
