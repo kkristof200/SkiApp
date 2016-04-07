@@ -24,6 +24,7 @@
     [super viewDidLoad];
     
     //TODO: (FOC) always add a newline between calls of super and other logics
+    //TODO: (FOC) move the login button setup logic to another method e.g. setupLoginButton
     CGRect viewFrame = self.view.bounds;
     // Do any additional setup after loading the view, typically from a nib.
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] initWithFrame:CGRectMake(0, viewFrame.size.height - 50, viewFrame.size.width, 50)];
@@ -32,11 +33,11 @@
     [self setRandomBgImage];
     //TODO: (FOC) always add a newline between calls of addSubview and other logics
     
-    [self.view addSubview:loginButton];
+    [self.view addSubview:loginButton];//TODO: (FOC) move this also to setupLoginButton method
 }
 
 - (void) setRandomBgImage {
-    int i = arc4random() %5;
+    int i = arc4random() %5; //TODO: (FOC) add empty spaces before & after operators
     self.bgImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"bg%i",i]];
 }
 
