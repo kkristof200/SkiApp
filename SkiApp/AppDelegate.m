@@ -34,6 +34,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [backendless initApp:kBackendlessAppId secret:kBackendlessIosSecretKey version:kBackEndlessVersion];
+    [backendless.userService setStayLoggedIn:YES];
     
     @try {
         [backendless initAppFault];
@@ -41,7 +42,7 @@
     @catch (Fault *fault) {
         NSLog(@"didFinishLaunchingWithOptions: %@", fault);
     }
-    
+    [backendless.userService setStayLoggedIn:YES];
     [[FBSDKApplicationDelegate sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     
     SKMapsInitSettings* settings = [[SKMapsInitSettings alloc]init];
@@ -53,6 +54,7 @@
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+
     BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
                                                                   openURL:url
                                                         sourceApplication:sourceApplication

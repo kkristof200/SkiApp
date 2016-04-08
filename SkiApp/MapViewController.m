@@ -44,6 +44,7 @@
     [self initMap];
     [self initButtons];
     [self initPolyLine];
+    
     //TODO:(FOC) keep same type of logics in the same 'visual block'. Shortly, the new-line below is not needed
     
     [self.locationManager startUpdatingLocation];
@@ -79,6 +80,7 @@
 
 - (void) initButtons {
     for (int i = 0; i < 2; i++) {
+        
         //TODO: (FOC) add empty spaces before & after operations
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         
@@ -97,6 +99,7 @@
             button.frame = CGRectMake(10, 60, 100, 50);
         }
         [button setBackgroundColor:[UIColor redColor]];
+        
         //TODO: (FOC) always add a newline between calls of addSubview and other logics
         
         [self.view addSubview:button];
@@ -154,6 +157,7 @@
     allTimeSession.allTimeSpeedAverage = (allTimeSession.allTimeSpeedAverage * allTimeSession.numberOfSessions + self.currentSession.speedAverage) / (allTimeSession.numberOfSessions + 1);
     allTimeSession.allTimeDistanceAverage = allTimeSession.allTimeDistance / (allTimeSession.numberOfSessions+1);
     allTimeSession.numberOfSessions ++;
+    
     if(allTimeSession.allTimeSpeedMax <= self.currentSession.speedMax) {
         allTimeSession.allTimeSpeedMax = self.currentSession.speedMax;
     }
@@ -164,6 +168,7 @@
     //TODO: (FOC) always use '{' '}' This way you avoid a lot of mistakes
     [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:allTimeSession] forKey:@"AllTimeSession"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
     //TODO: (FOC) should call synchronize since you are setting something
 }
 
@@ -181,11 +186,14 @@
 #warning Updating Values
     self.currentSession.distanceInSession += [self.lastLocation distanceFromLocation:currentLocation];
     //TODO: (FOC) add empty spaces before & after operations e.g. currentLocation.speed > 0
+    
     if (currentLocation.speed > 0) {
         //TODO: (FOC) add empty spaces before & after operations
+        
         if (self.numberOfPositionUpdatesWithSpeed > 0) {
             self.currentSession.speedAverage *= self.numberOfPositionUpdatesWithSpeed;
         }
+        
         self.currentSession.speedAverage += currentLocation.speed;
         self.numberOfPositionUpdatesWithSpeed++;
         self.currentSession.speedAverage /= self.numberOfPositionUpdatesWithSpeed;
@@ -194,6 +202,24 @@
     if (currentLocation.speed > self.currentSession.speedMax) {
         self.currentSession.speedMax = currentLocation.speed;
     }
+    
+    SKCoordinateRegion region;
+    region.center = CLLocationCoordinate2DMake(self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude);
+    region.zoomLevel = 17;
+    self.mapView.visibleRegion = region;
+    
+    
+    //FORFRIENDS
+    /*
+    SKCircle *circle = [SKCircle circle];
+    circle.identifier = 1;
+    circle.centerCoordinate = CLLocationCoordinate2DMake(52.5263, 13.4087);
+    circle.radius = 100.0f;
+    circle.fillColor = [UIColor redColor];
+    circle.strokeColor = [UIColor blueColor];
+    circle.isMask = NO;
+    [mapView addCircle:circle];
+    */
     
     [self.positionsArray addObject:currentLocation];
     [self updatePolyLine];
@@ -205,6 +231,9 @@
     [self.mapView addPolyline:self.polyline];
 }
 
+- (void) initWithFriendsMode {
+    
+}
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"didFailWithError: %@", error);
