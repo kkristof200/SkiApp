@@ -6,7 +6,14 @@
 //  Copyright © 2016 Kovács Kristóf. All rights reserved.
 //
 
+#define facebookErrorTitle @"No Facebook Account detected"
+#define facebookErrormessage @"Please go to Settings -> Facebook and connect your Facebook account!"
+#define twitterErrorTitle @"No Twitter Account detected"
+#define twitterErrormessage @"Please go to Settings -> Twitter and connect your Twitter account!"
+
 #import "StatisticsViewController.h"
+
+#import <Social/Social.h>
 
 #import "Session.h"
 #import "AllTimeSession.h"
@@ -113,9 +120,74 @@
     [self updateThisSessionLabels];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (UIImage*)captureView:(UIView *)view
+{
+    CGRect rect = [[UIScreen mainScreen] bounds];
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [view.layer renderInContext:context];
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
+}
+
+- (IBAction)shareFacebook:(id)sender
+{
+    if([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook])
+    {
+        SLComposeViewController *controller = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        [controller addImage:[self captureView:self.view]];
+        [self presentViewController:controller animated:YES completion:Nil];
+    }
+    else
+    {
+        [self showAlertWithTitle:facebookErrorTitle andWithMessage:facebookErrormessage];
+    }
+}
+- (IBAction)shareTwitter:(id)sender
+{
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter])
+    {
+        SLComposeViewController *controller = [SLComposeViewController
+                                               composeViewControllerForServiceType:SLServiceTypeTwitter];
+        [controller setInitialText:@"Check out my stats!"];
+        [controller addImage:[self captureView:self.view]];
+        [self presentViewController:controller animated:YES completion:nil];
+    }
+    else
+    {
+        [self showAlertWithTitle:twitterErrorTitle andWithMessage:twitterErrormessage];
+    }
+}
+
+- (void) showAlertWithTitle:(NSString *) title andWithMessage: (NSString *) message {
+    UIAlertController * alert=   [UIAlertController
+                                  alertControllerWithTitle:title
+                                  message:message
+                                  preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:@"Settings"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             [alert dismissViewControllerAnimated:YES completion:nil];
+                             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                             
+                         }];
+    UIAlertAction* cancel = [UIAlertAction
+                             actionWithTitle:@"Cancel"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [alert dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+    
+    [alert addAction:ok];
+    [alert addAction:cancel];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (IBAction)BackToMainVC:(id)sender {

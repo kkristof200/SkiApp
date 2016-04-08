@@ -10,9 +10,11 @@
 
 #import <CoreLocation/CoreLocation.h>
 #import <SKMaps/SKMaps.h>
+#import "Backendless.h"
 
 #import "Session.h"
 #import "AllTimeSession.h"
+#import "FriendUser.h"
 
 //TODO: (FOC) re-structure the imports
 
@@ -28,6 +30,8 @@
 @property NSMutableArray *positionsArray;
 @property CLLocation *lastLocation;
 @property int numberOfPositionUpdatesWithSpeed;
+@property NSTimer *updatePositionsTimer;
+@property NSMutableArray *friendsArray;
 
 @end
 
@@ -46,6 +50,10 @@
     [self initPolyLine];
     
     //TODO:(FOC) keep same type of logics in the same 'visual block'. Shortly, the new-line below is not needed
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"friendsMode"] == YES) {
+        [self updateFriends];
+    }
     
     [self.locationManager startUpdatingLocation];
     NSLog(@"ViewDidLoad");
@@ -76,39 +84,27 @@
     [SKPositionerService sharedInstance].delegate = self;
     
     [self.view addSubview:self.mapView];
+    
+    SKCoordinateRegion region;
+    region.center = CLLocationCoordinate2DMake(self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude);
+    region.zoomLevel = 16;
+    self.mapView.visibleRegion = region;
 }
 
 - (void) initButtons {
-    for (int i = 0; i < 2; i++) {
-        
-        //TODO: (FOC) add empty spaces before & after operations
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        
-        if (i == 0) {
-            [button addTarget:self
-                       action:@selector(showGroupDetails)
-             forControlEvents:UIControlEventTouchUpInside];
-            [button setTitle:@"Group" forState:UIControlStateNormal];
-            button.frame = CGRectMake(10, (CGRectGetHeight(self.view.frame)-60), 50, 50);
-        }
-        else {
-            [button addTarget:self
-                       action:@selector(endSession)
-             forControlEvents:UIControlEventTouchUpInside];
-            [button setTitle:@"End Session" forState:UIControlStateNormal];
-            button.frame = CGRectMake(10, 60, 100, 50);
-        }
-        [button setBackgroundColor:[UIColor redColor]];
-        
-        //TODO: (FOC) always add a newline between calls of addSubview and other logics
-        
-        [self.view addSubview:button];
-    }
-}
-
-- (void) showGroupDetails {
+    //TODO: (FOC) add empty spaces before & after operations
     
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button addTarget:self
+               action:@selector(endSession)
+     forControlEvents:UIControlEventTouchUpInside];
+    [button setTitle:@"" forState:UIControlStateNormal];
+    button.frame = CGRectMake(10, self.view.bounds.size.height - 60, 50, 50);
+    [button setBackgroundImage:[UIImage imageNamed:@"mapCancel.png"] forState:UIControlStateNormal];
     
+    //TODO: (FOC) always add a newline between calls of addSubview and other logics
+    
+    [self.view addSubview:button];
 }
 
 #warning [Kristof] Saving the array, then ending the session
@@ -131,6 +127,9 @@
     
     [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:sessionArray] forKey:@"SessionArray"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"friendsMode"];
+    [self.updatePositionsTimer invalidate];
     
     [self updateAndSaveAllTimeSession];
     
@@ -203,24 +202,6 @@
         self.currentSession.speedMax = currentLocation.speed;
     }
     
-    SKCoordinateRegion region;
-    region.center = CLLocationCoordinate2DMake(self.locationManager.location.coordinate.latitude, self.locationManager.location.coordinate.longitude);
-    region.zoomLevel = 17;
-    self.mapView.visibleRegion = region;
-    
-    
-    //FORFRIENDS
-    /*
-    SKCircle *circle = [SKCircle circle];
-    circle.identifier = 1;
-    circle.centerCoordinate = CLLocationCoordinate2DMake(52.5263, 13.4087);
-    circle.radius = 100.0f;
-    circle.fillColor = [UIColor redColor];
-    circle.strokeColor = [UIColor blueColor];
-    circle.isMask = NO;
-    [mapView addCircle:circle];
-    */
-    
     [self.positionsArray addObject:currentLocation];
     [self updatePolyLine];
     self.lastLocation = currentLocation;
@@ -231,8 +212,88 @@
     [self.mapView addPolyline:self.polyline];
 }
 
-- (void) initWithFriendsMode {
+- (void) updateFriends {
+    self.updatePositionsTimer = [NSTimer scheduledTimerWithTimeInterval: 3.0
+                                     target: self
+                                   selector: @selector(updatePositions)
+                                   userInfo: nil
+                                    repeats: YES];
+}
+
+-(void) updatePositions {
+    //Updating Current User Location
+    NSString *userLatitude = [NSString stringWithFormat:@"%f", self.locationManager.location.coordinate.latitude];
+    NSString *userLongitude = [NSString stringWithFormat:@"%f", self.locationManager.location.coordinate.longitude];
     
+    NSLog(@"ItUpdates");
+    [backendless.userService.currentUser updateProperties:@{@"user_latitude" : userLatitude,
+                                                           @"user_longitude" : userLongitude}];
+    
+    [backendless.userService update:backendless.userService.currentUser];
+    
+    //Getting Friend User Location and ProfilePic
+    
+    NSString *groupId = [backendless.userService.currentUser getProperty:@"groupId"];
+    BackendlessDataQuery *query = [BackendlessDataQuery query];
+    query.whereClause = [NSString stringWithFormat:@"groupId = %@", groupId];
+    BackendlessCollection *collection = [[backendless.persistenceService of:[BackendlessUser class]] find:query];
+    NSArray *currentPage =[collection getCurrentPage];
+    BackendlessUser *backendlessFriendUser;
+    FriendUser *friend;
+    
+    if (self.friendsArray.count < currentPage.count) {
+        for (long i = self.friendsArray.count; i < currentPage.count; i++) {
+            backendlessFriendUser = [currentPage objectAtIndex:currentPage.count - i];
+            FriendUser *newFriend = [[FriendUser alloc] init];
+             
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+                NSString *imgURL = [backendlessFriendUser getProperty:@"profilePictureURL"];
+                newFriend.profilePic = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imgURL]]];
+            });
+            [self.friendsArray addObject:newFriend];
+            NSLog(@"ArrayCount : %lu",(unsigned long)self.friendsArray.count);
+        }
+    }
+    
+    for (int i = 0; i < currentPage.count; i++) {
+        backendlessFriendUser = [currentPage objectAtIndex:i];
+        friend = [self.friendsArray objectAtIndex:i-1];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString *friendLatitude = [backendlessFriendUser getProperty:@"user_latitude"];
+        NSString *friendLongitude = [backendlessFriendUser getProperty:@"user_longitude"];
+        
+        UIImageView *friendImage = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 50, 50)];
+        friendImage.layer.masksToBounds = YES;
+        friendImage.layer.cornerRadius = 25;
+        friendImage.image = friend.profilePic;
+        
+        SKAnnotationView *view = [[SKAnnotationView alloc] initWithView:friendImage reuseIdentifier:@"viewID"];
+        
+        SKAnnotation *viewAnnotation = [SKAnnotation annotation];
+        viewAnnotation.annotationView = view;
+        viewAnnotation.identifier = i;
+        viewAnnotation.location = CLLocationCoordinate2DMake([friendLatitude doubleValue], [friendLongitude doubleValue]);
+        SKAnimationSettings *animationSettings = [SKAnimationSettings animationSettings];
+        [self.mapView addAnnotation:viewAnnotation withAnimationSettings:animationSettings];
+        });
+    }
+}
+
+- (void) createProfilePictures {
+    UIImageView *friendImage = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 50, 50)];
+    friendImage.layer.masksToBounds = YES;
+    friendImage.layer.cornerRadius = 25;
+    friendImage.image = [UIImage imageNamed:@"mapCancel.png"];
+    
+    SKAnnotationView *view = [[SKAnnotationView alloc] initWithView:friendImage reuseIdentifier:@"viewID"];
+    
+    SKAnnotation *viewAnnotation = [SKAnnotation annotation];
+    viewAnnotation.annotationView = view;
+    viewAnnotation.identifier = 100;
+    viewAnnotation.location = CLLocationCoordinate2DMake(52.5263, 13.4087);
+    SKAnimationSettings *animationSettings = [SKAnimationSettings animationSettings];
+    [self.mapView addAnnotation:viewAnnotation withAnimationSettings:animationSettings];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {

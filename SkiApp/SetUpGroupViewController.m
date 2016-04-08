@@ -54,8 +54,27 @@
         NSString *facebookId = [self.currentUser getProperty:@"facebookId"];
         NSLog(@"facebookId : %@",facebookId);
         
-        [self.currentUser setProperty:@"groupId" object:facebookId];
+        [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{ @"fields" : @"picture.width(100).height(100)"}]startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+            if (!error) {
+                NSString *profilePictureURL = [[[result valueForKey:@"picture"] valueForKey:@"data"] valueForKey:@"url"];
+                [self.currentUser updateProperties:@{@"profilePictureURL" : profilePictureURL}];
+            }
+            
+        }];
+        
         [self.currentUser updateProperties:@{@"groupId" : facebookId}];
+        
+        [backendless.userService update:self.currentUser];
+        
+        BackendlessCollection *collection = [[backendless.persistenceService of:[BackendlessUser class]] find];
+        NSArray *currentPage =[collection getCurrentPage];
+        BackendlessUser *updatedUser;
+        
+        for (int i = 0; i < currentPage.count; i++) {
+            updatedUser = [currentPage objectAtIndex:i];
+            
+            NSLog(@"groupId of User nr %i : %@", i, [updatedUser getProperty:@"groupId"]);
+        }
         
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"friendsMode"];
         
@@ -91,8 +110,17 @@
                 [self showAlertWithTitle:wrongIdErrorTitle andWithMessage:wrongIdErrorMessage shouldDismissVC:NO];
             }
             else {
-                [self.currentUser setProperty:@"groupId" object:groupIdOfFriend];
+                [[[FBSDKGraphRequest alloc] initWithGraphPath:@"me" parameters:@{ @"fields" : @"picture.width(100).height(100)"}]startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+                    if (!error) {
+                        NSString *profilePictureURL = [[[result valueForKey:@"picture"] valueForKey:@"data"] valueForKey:@"url"];
+                        [self.currentUser updateProperties:@{@"profilePictureURL" : profilePictureURL}];
+                    }
+                    
+                }];
+                
                 [self.currentUser updateProperties:@{@"groupId" : groupIdOfFriend}];
+                
+                [backendless.userService update:self.currentUser];
                 
                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"friendsMode"];
                 
@@ -100,6 +128,11 @@
                 [self presentViewController:MVC animated:YES completion:nil];
             }
         }
+    }
+    else {
+        NSLog(@"Not logged in");
+        
+        [self showAlertWithTitle:facebookErrorTitle andWithMessage:facebookErrormessage shouldDismissVC:YES];
     }
         /*
         BackendlessDataQuery *query = [BackendlessDataQuery query];
@@ -112,11 +145,6 @@
                 updatedUser = [currentPage objectAtIndex:i];
                 NSLog(@"User nr %i : %@", i, [updatedUser getName]);
             }
-        }
-        
-        @catch (Fault *fault) {
-        }
-    }
     */
 }
 

@@ -6,8 +6,8 @@
 //  Copyright © 2016 Kovács Kristóf. All rights reserved.
 //
 
-#import "Person.h"
+#import "FriendUser.h"
 
-@implementation Person
+@implementation FriendUser
 
 @end

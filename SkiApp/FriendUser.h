@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface Person : NSObject
+@interface FriendUser : NSObject
+
+@property UIImage *profilePic;
 
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 //TODO: (FOC) re-name this into something more suggestive: MapViewController
 // that's why Xcode automatically adds the suffix
+
 @interface MapViewController : UIViewController
 
 @end
