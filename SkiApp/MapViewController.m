@@ -52,6 +52,7 @@
     //TODO:(FOC) keep same type of logics in the same 'visual block'. Shortly, the new-line below is not needed
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"friendsMode"] == YES) {
+        self.friendsArray = [[NSMutableArray alloc] init];
         [self updateFriends];
     }
     
@@ -239,27 +240,25 @@
     BackendlessCollection *collection = [[backendless.persistenceService of:[BackendlessUser class]] find:query];
     NSArray *currentPage =[collection getCurrentPage];
     BackendlessUser *backendlessFriendUser;
-    FriendUser *friend;
     
     if (self.friendsArray.count < currentPage.count) {
         for (long i = self.friendsArray.count; i < currentPage.count; i++) {
-            backendlessFriendUser = [currentPage objectAtIndex:currentPage.count - i];
-            FriendUser *newFriend = [[FriendUser alloc] init];
-             
+            backendlessFriendUser = [currentPage objectAtIndex:currentPage.count - (i+1)];
+            
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+                FriendUser *newFriend = [[FriendUser alloc] init];
                 NSString *imgURL = [backendlessFriendUser getProperty:@"profilePictureURL"];
                 newFriend.profilePic = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imgURL]]];
+                [self.friendsArray addObject:newFriend];
+                NSLog(@"ArrayCount : %lu",(unsigned long)self.friendsArray.count);
             });
-            [self.friendsArray addObject:newFriend];
-            NSLog(@"ArrayCount : %lu",(unsigned long)self.friendsArray.count);
         }
     }
     
-    for (int i = 0; i < currentPage.count; i++) {
+    for (int i = 0; i < self.friendsArray.count; i++) {
         backendlessFriendUser = [currentPage objectAtIndex:i];
-        friend = [self.friendsArray objectAtIndex:i-1];
+        FriendUser *friend = [self.friendsArray objectAtIndex:i];
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         NSString *friendLatitude = [backendlessFriendUser getProperty:@"user_latitude"];
         NSString *friendLongitude = [backendlessFriendUser getProperty:@"user_longitude"];
         
@@ -268,7 +267,7 @@
         friendImage.layer.cornerRadius = 25;
         friendImage.image = friend.profilePic;
         
-        SKAnnotationView *view = [[SKAnnotationView alloc] initWithView:friendImage reuseIdentifier:@"viewID"];
+        SKAnnotationView *view = [[SKAnnotationView alloc] initWithView:friendImage reuseIdentifier:[NSString stringWithFormat:@"ID%i",i]];
         
         SKAnnotation *viewAnnotation = [SKAnnotation annotation];
         viewAnnotation.annotationView = view;
@@ -276,24 +275,7 @@
         viewAnnotation.location = CLLocationCoordinate2DMake([friendLatitude doubleValue], [friendLongitude doubleValue]);
         SKAnimationSettings *animationSettings = [SKAnimationSettings animationSettings];
         [self.mapView addAnnotation:viewAnnotation withAnimationSettings:animationSettings];
-        });
     }
-}
-
-- (void) createProfilePictures {
-    UIImageView *friendImage = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, 50, 50)];
-    friendImage.layer.masksToBounds = YES;
-    friendImage.layer.cornerRadius = 25;
-    friendImage.image = [UIImage imageNamed:@"mapCancel.png"];
-    
-    SKAnnotationView *view = [[SKAnnotationView alloc] initWithView:friendImage reuseIdentifier:@"viewID"];
-    
-    SKAnnotation *viewAnnotation = [SKAnnotation annotation];
-    viewAnnotation.annotationView = view;
-    viewAnnotation.identifier = 100;
-    viewAnnotation.location = CLLocationCoordinate2DMake(52.5263, 13.4087);
-    SKAnimationSettings *animationSettings = [SKAnimationSettings animationSettings];
-    [self.mapView addAnnotation:viewAnnotation withAnimationSettings:animationSettings];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
