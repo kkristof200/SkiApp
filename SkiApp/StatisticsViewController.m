@@ -38,6 +38,8 @@
 @property IBOutlet UIButton *toNextSession;
 
 @property long sessionNumber;
+@property NSString *distanceUnit;
+@property float distanceMultiplier;
 @property NSArray *sessionArray;
 @property Session *thisSession;
 @property AllTimeSession * allTimeSession;
@@ -49,7 +51,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self checkIfMetric];
+    
     [self loadValues];
+}
+
+- (void) checkIfMetric {
+    NSLocale *locale = [NSLocale currentLocale];
+    
+    if ([[locale objectForKey:NSLocaleUsesMetricSystem] boolValue]) {
+        self.distanceUnit = @"km";
+        self.distanceMultiplier = 1;
+    }
+    else {
+        self.distanceUnit = @"m";
+        self.distanceMultiplier = 0.621371;
+    }
 }
 
 - (void)loadValues {
@@ -70,9 +87,9 @@
     self.thisSession = [self.sessionArray objectAtIndex:self.sessionNumber];
     
     self.sessionDateLabel.text = [NSString stringWithFormat:@"%@",self.thisSession.sessionDate];
-    self.sessionAvgSpeedLabel.text = [NSString stringWithFormat:@"%.2f km/h",self.thisSession.speedAverage * 3.6];
-    self.sessionHighSpeedLabel.text = [NSString stringWithFormat:@"%.2f km/h",self.thisSession.speedMax * 3.6];
-    self.sessionDistanceLabel.text = [NSString stringWithFormat:@"%ld km",self.thisSession.distanceInSession / 1000];
+    self.sessionAvgSpeedLabel.text = [NSString stringWithFormat:@"%.2f %@/h",self.thisSession.speedAverage * 3.6 * self.distanceMultiplier, self.distanceUnit];
+    self.sessionHighSpeedLabel.text = [NSString stringWithFormat:@"%.2f %@/h",self.thisSession.speedMax * 3.6 * self.distanceMultiplier, self.distanceUnit];
+    self.sessionDistanceLabel.text = [NSString stringWithFormat:@"%.2f %@",self.thisSession.distanceInSession / 1000 * self.distanceMultiplier, self.distanceUnit];
 }
 
 - (void)updateAllTimeSessionLabels {
@@ -92,10 +109,10 @@
     
     self.allTimeSession = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"AllTimeSession"]];
     
-    self.allTimeAvgSpeedLabel.text = [NSString stringWithFormat:@"%.2f km/h",self.allTimeSession.allTimeSpeedAverage * 3.6];
-    self.allTimeHighSpeedLabel.text = [NSString stringWithFormat:@"%.2f km/h",self.allTimeSession.allTimeSpeedMax * 3.6];
-    self.allTimeAvgDistanceLabel.text = [NSString stringWithFormat:@"%.2f km",self.allTimeSession.allTimeDistanceAverage / 1000];
-    self.allTimeDistanceLabel.text = [NSString stringWithFormat:@"%ld km",self.allTimeSession.allTimeDistance / 1000];
+    self.allTimeAvgSpeedLabel.text = [NSString stringWithFormat:@"%.2f %@/h",self.allTimeSession.allTimeSpeedAverage * 3.6 * self.distanceMultiplier, self.distanceUnit];
+    self.allTimeHighSpeedLabel.text = [NSString stringWithFormat:@"%.2f %@/h",self.allTimeSession.allTimeSpeedMax * 3.6 * self.distanceMultiplier, self.distanceUnit];
+    self.allTimeAvgDistanceLabel.text = [NSString stringWithFormat:@"%.2f %@",self.allTimeSession.allTimeDistanceAverage / 1000 * self.distanceMultiplier, self.distanceUnit];
+    self.allTimeDistanceLabel.text = [NSString stringWithFormat:@"%.2f %@",self.allTimeSession.allTimeDistance / 1000 * self.distanceMultiplier, self.distanceUnit];
     self.allTimeSessionCountLabel.text = [NSString stringWithFormat:@"%i",self.allTimeSession.numberOfSessions];
 }
 
