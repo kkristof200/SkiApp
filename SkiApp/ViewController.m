@@ -11,6 +11,10 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "Backendless.h"
+#import "GameCenterManager.h"
+
+#import "AllTimeSession.h"
+
 //TODO: (FOC) apply comments from MapView.m
 @interface ViewController ()
 
@@ -46,6 +50,43 @@
 - (void) setRandomBgImage {
     int i = arc4random() % 5; //TODO: (FOC) add empty spaces before & after operators
     self.bgImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"bg%i",i]];
+}
+
+- (IBAction)showLeaderBoard:(id)sender {
+    [self uploadAchievementsAndHighScore];
+    
+    [[GameCenterManager sharedManager] presentLeaderboardsOnViewController:self withLeaderboard:@"kovacsKristof.skiApp.mainLeaderBoard"];
+}
+
+- (IBAction)showAchievements:(id)sender {
+    [self uploadAchievementsAndHighScore];
+    
+    [[GameCenterManager sharedManager] presentAchievementsOnViewController:self];
+}
+
+- (void) uploadAchievementsAndHighScore {
+    AllTimeSession *allTimeSession;
+    float highScore;
+    
+    allTimeSession = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"AllTimeSession"]];
+    
+    highScore = allTimeSession.allTimeDistance/1000;
+    
+    //Leaderboard
+    
+    [[GameCenterManager sharedManager] saveAndReportScore:highScore leaderboard:@"kovacsKristof.skiApp.mainLeaderBoard" sortOrder:GameCenterSortOrderHighToLow];
+    
+    //Achivements
+    
+    if ([[GameCenterManager sharedManager] progressForAchievement:@"newbie"] != 100) {
+        
+        [[GameCenterManager sharedManager] saveAndReportAchievement:@"newbie" percentComplete:100 shouldDisplayNotification:YES];
+    }
+    
+    if (([[GameCenterManager sharedManager] progressForAchievement:@"100km"] != 100) && ([[GameCenterManager sharedManager] progressForAchievement:@"100km"] < (int)highScore)) {
+        
+        [[GameCenterManager sharedManager] saveAndReportAchievement:@"100km" percentComplete:highScore shouldDisplayNotification:YES];
+    }
 }
 
 @end

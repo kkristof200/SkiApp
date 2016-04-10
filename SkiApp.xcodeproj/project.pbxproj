@@ -37,6 +37,13 @@
 		C09BA0791CB8461700F4B038 /* shareTwitter.png in Resources */ = {isa = PBXBuildFile; fileRef = C09BA0771CB8461700F4B038 /* shareTwitter.png */; };
 		C09BA07B1CB8490800F4B038 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09BA07A1CB8490800F4B038 /* Social.framework */; };
 		C09BA07D1CB8497F00F4B038 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09BA07C1CB8497F00F4B038 /* Twitter.framework */; };
+		C09BA07F1CB9736D00F4B038 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09BA07E1CB9736D00F4B038 /* GameKit.framework */; };
+		C09BA08F1CBAF55200F4B038 /* GameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C09BA0871CBAF55200F4B038 /* GameCenterManager.m */; };
+		C09BA0901CBAF55200F4B038 /* GCMMultiplayer.m in Sources */ = {isa = PBXBuildFile; fileRef = C09BA08A1CBAF55200F4B038 /* GCMMultiplayer.m */; };
+		C09BA0911CBAF55200F4B038 /* NSDataAES256.m in Sources */ = {isa = PBXBuildFile; fileRef = C09BA08C1CBAF55200F4B038 /* NSDataAES256.m */; };
+		C09BA0921CBAF55200F4B038 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = C09BA08E1CBAF55200F4B038 /* Reachability.m */; };
+		C09BA0951CBAFE0C00F4B038 /* leaderboard.png in Resources */ = {isa = PBXBuildFile; fileRef = C09BA0931CBAFE0C00F4B038 /* leaderboard.png */; };
+		C09BA0961CBAFE0C00F4B038 /* trophy.png in Resources */ = {isa = PBXBuildFile; fileRef = C09BA0941CBAFE0C00F4B038 /* trophy.png */; };
 		C0BAAB4D1CB3EE6000597DB2 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0BAAB411CB3EE6000597DB2 /* Bolts.framework */; };
 		C0BAAB4E1CB3EE6000597DB2 /* FacebookAudienceNetworkSDK-4_10-for-iOS.docset in Resources */ = {isa = PBXBuildFile; fileRef = C0BAAB431CB3EE6000597DB2 /* FacebookAudienceNetworkSDK-4_10-for-iOS.docset */; };
 		C0BAAB4F1CB3EE6000597DB2 /* FacebookMessengerShareKitSDK-1_3-for-iOS.docset in Resources */ = {isa = PBXBuildFile; fileRef = C0BAAB441CB3EE6000597DB2 /* FacebookMessengerShareKitSDK-1_3-for-iOS.docset */; };
@@ -137,6 +144,18 @@
 		C09BA0771CB8461700F4B038 /* shareTwitter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shareTwitter.png; sourceTree = "<group>"; };
 		C09BA07A1CB8490800F4B038 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		C09BA07C1CB8497F00F4B038 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		C09BA07E1CB9736D00F4B038 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		C09BA0861CBAF55200F4B038 /* GameCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameCenterManager.h; sourceTree = "<group>"; };
+		C09BA0871CBAF55200F4B038 /* GameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameCenterManager.m; sourceTree = "<group>"; };
+		C09BA0881CBAF55200F4B038 /* GCMConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCMConstants.h; sourceTree = "<group>"; };
+		C09BA0891CBAF55200F4B038 /* GCMMultiplayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCMMultiplayer.h; sourceTree = "<group>"; };
+		C09BA08A1CBAF55200F4B038 /* GCMMultiplayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCMMultiplayer.m; sourceTree = "<group>"; };
+		C09BA08B1CBAF55200F4B038 /* NSDataAES256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDataAES256.h; sourceTree = "<group>"; };
+		C09BA08C1CBAF55200F4B038 /* NSDataAES256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDataAES256.m; sourceTree = "<group>"; };
+		C09BA08D1CBAF55200F4B038 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		C09BA08E1CBAF55200F4B038 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		C09BA0931CBAFE0C00F4B038 /* leaderboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leaderboard.png; sourceTree = "<group>"; };
+		C09BA0941CBAFE0C00F4B038 /* trophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trophy.png; sourceTree = "<group>"; };
 		C0BAAB411CB3EE6000597DB2 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		C0BAAB431CB3EE6000597DB2 /* FacebookAudienceNetworkSDK-4_10-for-iOS.docset */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "FacebookAudienceNetworkSDK-4_10-for-iOS.docset"; sourceTree = "<group>"; };
 		C0BAAB441CB3EE6000597DB2 /* FacebookMessengerShareKitSDK-1_3-for-iOS.docset */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "FacebookMessengerShareKitSDK-1_3-for-iOS.docset"; sourceTree = "<group>"; };
@@ -359,6 +378,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C09BA07F1CB9736D00F4B038 /* GameKit.framework in Frameworks */,
 				C09BA07D1CB8497F00F4B038 /* Twitter.framework in Frameworks */,
 				C09BA07B1CB8490800F4B038 /* Social.framework in Frameworks */,
 				C0BAAB4D1CB3EE6000597DB2 /* Bolts.framework in Frameworks */,
@@ -414,6 +434,7 @@
 		C030C7851C773BFC008CBD83 = {
 			isa = PBXGroup;
 			children = (
+				C09BA07E1CB9736D00F4B038 /* GameKit.framework */,
 				C06CBAA31C845D9A00F39CC8 /* FakeRoute.gpx */,
 				C030C7901C773BFC008CBD83 /* SkiApp */,
 				C030C7AA1C773BFC008CBD83 /* SkiAppTests */,
@@ -489,6 +510,8 @@
 				C030C7C91C773EBA008CBD83 /* transLight3.png */,
 				C09BA0761CB8461700F4B038 /* shareFacebook.png */,
 				C09BA0771CB8461700F4B038 /* shareTwitter.png */,
+				C09BA0931CBAFE0C00F4B038 /* leaderboard.png */,
+				C09BA0941CBAFE0C00F4B038 /* trophy.png */,
 				C09BA06E1CB6C05300F4B038 /* back.png */,
 				C09BA06F1CB6C05300F4B038 /* next.png */,
 				C09BA0681CB6BE8700F4B038 /* cancel.png */,
@@ -513,9 +536,26 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
+		C09BA0851CBAF55200F4B038 /* GC Manager */ = {
+			isa = PBXGroup;
+			children = (
+				C09BA0861CBAF55200F4B038 /* GameCenterManager.h */,
+				C09BA0871CBAF55200F4B038 /* GameCenterManager.m */,
+				C09BA0881CBAF55200F4B038 /* GCMConstants.h */,
+				C09BA0891CBAF55200F4B038 /* GCMMultiplayer.h */,
+				C09BA08A1CBAF55200F4B038 /* GCMMultiplayer.m */,
+				C09BA08B1CBAF55200F4B038 /* NSDataAES256.h */,
+				C09BA08C1CBAF55200F4B038 /* NSDataAES256.m */,
+				C09BA08D1CBAF55200F4B038 /* Reachability.h */,
+				C09BA08E1CBAF55200F4B038 /* Reachability.m */,
+			);
+			path = "GC Manager";
+			sourceTree = "<group>";
+		};
 		C0BAA8F31CB1A8A000597DB2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C09BA0851CBAF55200F4B038 /* GC Manager */,
 				C09BA07C1CB8497F00F4B038 /* Twitter.framework */,
 				C09BA07A1CB8490800F4B038 /* Social.framework */,
 				C0BAAB401CB3EE3A00597DB2 /* Facebook */,
@@ -1029,6 +1069,12 @@
 				TargetAttributes = {
 					C030C78D1C773BFC008CBD83 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = U334947G4D;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 					C030C7A61C773BFC008CBD83 = {
 						CreatedOnToolsVersion = 7.2;
@@ -1066,6 +1112,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C09BA0521CB67B8700F4B038 /* bg4.png in Resources */,
+				C09BA0961CBAFE0C00F4B038 /* trophy.png in Resources */,
 				C0BAAB521CB3EE6000597DB2 /* FacebookSDKStrings.bundle in Resources */,
 				C09BA0531CB67B8700F4B038 /* bg3.png in Resources */,
 				C09BA0551CB67B8700F4B038 /* bg0.png in Resources */,
@@ -1080,6 +1127,7 @@
 				C09BA0671CB6BD2900F4B038 /* Logo2.png in Resources */,
 				C0BAAB4F1CB3EE6000597DB2 /* FacebookMessengerShareKitSDK-1_3-for-iOS.docset in Resources */,
 				C09BA0751CB81A7700F4B038 /* mapCancel.png in Resources */,
+				C09BA0951CBAFE0C00F4B038 /* leaderboard.png in Resources */,
 				C09BA0581CB67C2A00F4B038 /* skiAppLogo.png in Resources */,
 				C09BA0541CB67B8700F4B038 /* bg1.png in Resources */,
 				C09BA0691CB6BE8700F4B038 /* cancel.png in Resources */,
@@ -1119,12 +1167,16 @@
 				C030C7991C773BFC008CBD83 /* ViewController.m in Sources */,
 				C0F3897C1C7F648200B30811 /* StatisticsViewController.m in Sources */,
 				C023ED331C945F2400F614D9 /* Session.m in Sources */,
+				C09BA0911CBAF55200F4B038 /* NSDataAES256.m in Sources */,
 				C0F389781C7F5F9300B30811 /* MapViewController.m in Sources */,
 				C030C7961C773BFC008CBD83 /* AppDelegate.m in Sources */,
 				C09BA0631CB6B46200F4B038 /* SetUpGroupViewController.m in Sources */,
 				C0BE43311CAE6A520089F794 /* FriendUser.m in Sources */,
 				C030C7931C773BFC008CBD83 /* main.m in Sources */,
+				C09BA0921CBAF55200F4B038 /* Reachability.m in Sources */,
 				C0BE432D1CADC64B0089F794 /* AllTimeSession.m in Sources */,
+				C09BA0901CBAF55200F4B038 /* GCMMultiplayer.m in Sources */,
+				C09BA08F1CBAF55200F4B038 /* GameCenterManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1265,6 +1317,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1288,6 +1342,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "Kovacs-Kristof.SkiApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1295,6 +1350,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1318,6 +1375,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = "Kovacs-Kristof.SkiApp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
