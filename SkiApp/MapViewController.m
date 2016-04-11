@@ -16,6 +16,8 @@
 #import "AllTimeSession.h"
 #import "FriendUser.h"
 
+#import "ViewController.h"
+
 //TODO: (FOC) re-structure the imports
 
 //TODO: (FOC) add empty spaces as it follows (after commas, after ')', before & after operations)
@@ -129,12 +131,20 @@
     [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:sessionArray] forKey:@"SessionArray"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"friendsMode"];
-    [self.updatePositionsTimer invalidate];
-    
     [self updateAndSaveAllTimeSession];
     
-    [self.navigationController popViewControllerAnimated:YES];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"friendsMode"] == YES) {
+        [self.updatePositionsTimer invalidate];
+        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"friendsMode"];
+        
+        //Wasn't working with popVC, but it was working with dismiss. Btw I still go wit this third solution, because dismissVC brings back to "SetupGroupViewController"
+        
+        ViewController *mainVC = [self.storyboard instantiateViewControllerWithIdentifier:@"mainVC"];
+        [self presentViewController:mainVC animated:YES completion:nil];
+    }
+    else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void) updateAndSaveAllTimeSession {
