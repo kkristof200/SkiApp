@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface Session : NSObject<NSCoding>
 
@@ -14,5 +15,6 @@
 @property float speedAverage;
 @property float speedMax;
 @property NSString *sessionDate;
+@property UIImage *sessionImage;
 
 @end

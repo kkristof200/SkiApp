@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" xmlns:gpxx="http://www.garmin.com/xmlschemas/GpxExtensions/v3" xmlns:gpxtpx="http://www.garmin.com/xmlschemas/TrackPointExtension/v1" creator="labs.coruscantconsulting.co.uk" version="1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd http://www.garmin.com/xmlschemas/GpxExtensions/v3 http://www.garmin.com/xmlschemas/GpxExtensionsv3.xsd http://www.garmin.com/xmlschemas/TrackPointExtension/v1 http://www.garmin.com/xmlschemas/TrackPointExtensionv1.xsd">
+  <metadata>
+    <link href="http://www.coruscantconsulting.co.uk">
+      <text>Coruscant Consulting Ltd. Labs</text>
+    </link>
+    <!--desc>Map data copyright 2015 Google</desc-->
+    <!--copyright author="Google Inc">
+    	<year>2015</year>
+    	<license>https://developers.google.com/maps/terms</license>
+    </copyright-->
+    <!--url>https://www.google.co.uk/maps/dir/46.781147,23.6082174/46.7733293,23.5925533/@46.7712571,23.5999776,15z/data=!4m2!4m1!3e0?hl=en</url-->
+    <time>2016-04-18T10:11:10Z</time>
+  </metadata>
+  <wpt lat="46.781147" lon="23.6082174">
+    <name>Strada București 77</name>
+    <desc>Strada București 77, Cluj-Napoca 400000, Romania</desc>
+    <time>2016-04-18T11:11:10Z</time>
+  </wpt>
+  <wpt lat="46.7811933" lon="23.6082024">
+    <name>WP001</name>
+    <time>2016-04-18T11:11:25Z</time>
+  </wpt>
+  <wpt lat="46.7802884" lon="23.5992229">
+    <name>WP002</name>
+    <time>2016-04-18T11:11:40Z</time>
+  </wpt>
+  <wpt lat="46.7760152" lon="23.5980733">
+    <name>WP003</name>
+    <time>2016-04-18T11:11:55Z</time>
+  </wpt>
+  <wpt lat="46.7747273" lon="23.5950842">
+    <name>WP004</name>
+    <time>2016-04-18T11:12:10Z</time>
+  </wpt>
+  <wpt lat="46.7740541" lon="23.5956965">
+    <name>WP005</name>
+    <time>2016-04-18T11:12:25Z</time>
+  </wpt>
+  <wpt lat="46.7739523" lon="23.5924613">
+    <name>WP006</name>
+    <time>2016-04-18T11:12:40Z</time>
+  </wpt>
+  <wpt lat="46.7736625" lon="23.5926271">
+    <name>WP007</name>
+    <time>2016-04-18T11:12:55Z</time>
+  </wpt>
+  <wpt lat="46.7733293" lon="23.5925533">
+    <name>City Business Center</name>
+    <desc>City Business Center, Strada Cuza Vodă 1, Cluj-Napoca 400107, Romania</desc>
+    <time>2016-04-18T11:13:10Z</time>
+  </wpt>
+</gpx>

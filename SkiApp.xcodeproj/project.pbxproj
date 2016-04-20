@@ -19,6 +19,7 @@
 		C030C7CA1C773EBA008CBD83 /* transLight3.png in Resources */ = {isa = PBXBuildFile; fileRef = C030C7C91C773EBA008CBD83 /* transLight3.png */; };
 		C030C7CC1C773EFC008CBD83 /* trans1.png in Resources */ = {isa = PBXBuildFile; fileRef = C030C7CB1C773EFC008CBD83 /* trans1.png */; };
 		C06CBAA41C845D9B00F39CC8 /* FakeRoute.gpx in Resources */ = {isa = PBXBuildFile; fileRef = C06CBAA31C845D9A00F39CC8 /* FakeRoute.gpx */; };
+		C07BDB031CC4E21D0046F2F5 /* gpxgmap_converted.gpx in Resources */ = {isa = PBXBuildFile; fileRef = C07BDB021CC4E21D0046F2F5 /* gpxgmap_converted.gpx */; };
 		C09BA0521CB67B8700F4B038 /* bg4.png in Resources */ = {isa = PBXBuildFile; fileRef = C09BA04D1CB67B8700F4B038 /* bg4.png */; };
 		C09BA0531CB67B8700F4B038 /* bg3.png in Resources */ = {isa = PBXBuildFile; fileRef = C09BA04E1CB67B8700F4B038 /* bg3.png */; };
 		C09BA0541CB67B8700F4B038 /* bg1.png in Resources */ = {isa = PBXBuildFile; fileRef = C09BA04F1CB67B8700F4B038 /* bg1.png */; };
@@ -125,6 +126,7 @@
 		C030C7C91C773EBA008CBD83 /* transLight3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transLight3.png; sourceTree = "<group>"; };
 		C030C7CB1C773EFC008CBD83 /* trans1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trans1.png; sourceTree = "<group>"; };
 		C06CBAA31C845D9A00F39CC8 /* FakeRoute.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = FakeRoute.gpx; sourceTree = "<group>"; };
+		C07BDB021CC4E21D0046F2F5 /* gpxgmap_converted.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = gpxgmap_converted.gpx; sourceTree = "<group>"; };
 		C09BA04D1CB67B8700F4B038 /* bg4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg4.png; sourceTree = "<group>"; };
 		C09BA04E1CB67B8700F4B038 /* bg3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg3.png; sourceTree = "<group>"; };
 		C09BA04F1CB67B8700F4B038 /* bg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg1.png; sourceTree = "<group>"; };
@@ -436,6 +438,7 @@
 			children = (
 				C09BA07E1CB9736D00F4B038 /* GameKit.framework */,
 				C06CBAA31C845D9A00F39CC8 /* FakeRoute.gpx */,
+				C07BDB021CC4E21D0046F2F5 /* gpxgmap_converted.gpx */,
 				C030C7901C773BFC008CBD83 /* SkiApp */,
 				C030C7AA1C773BFC008CBD83 /* SkiAppTests */,
 				C030C7B51C773BFC008CBD83 /* SkiAppUITests */,
@@ -1112,6 +1115,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C09BA0521CB67B8700F4B038 /* bg4.png in Resources */,
+				C07BDB031CC4E21D0046F2F5 /* gpxgmap_converted.gpx in Resources */,
 				C09BA0961CBAFE0C00F4B038 /* trophy.png in Resources */,
 				C0BAAB521CB3EE6000597DB2 /* FacebookSDKStrings.bundle in Resources */,
 				C09BA0531CB67B8700F4B038 /* bg3.png in Resources */,

@@ -34,6 +34,10 @@
 @property int numberOfPositionUpdatesWithSpeed;
 @property NSTimer *updatePositionsTimer;
 @property NSMutableArray *friendsArray;
+@property NSString *userLatitude;
+@property NSString *userLongitude;
+@property NSMutableArray *latitudes;
+@property NSMutableArray *longitudes;
 
 @end
 
@@ -58,8 +62,7 @@
         [self updateFriends];
     }
     
-    [self.locationManager startUpdatingLocation];
-    NSLog(@"ViewDidLoad");
+    //[self.locationManager startUpdatingLocation];
 }
 
 - (void) initValues {
@@ -99,9 +102,10 @@
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button addTarget:self
-               action:@selector(endSession)
+               action:@selector(prepareforEndingSession)
      forControlEvents:UIControlEventTouchUpInside];
     [button setTitle:@"" forState:UIControlStateNormal];
+    button.tag = 7;
     button.frame = CGRectMake(10, self.view.bounds.size.height - 60, 50, 50);
     [button setBackgroundImage:[UIImage imageNamed:@"mapCancel.png"] forState:UIControlStateNormal];
     
@@ -111,6 +115,95 @@
 }
 
 #warning [Kristof] Saving the array, then ending the session
+
+- (UIImage*)captureView:(UIView *)view
+{
+    CGRect rect = [[UIScreen mainScreen] bounds];
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [view.layer renderInContext:context];
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
+}
+
+- (void)prepareforEndingSession {
+   
+    float lonXMax = -90;
+    float lonXMin = 90;
+    for (NSNumber *num in self.longitudes) {
+        float x = num.floatValue;
+        if (x < lonXMin) lonXMin = x;
+        if (x > lonXMax) lonXMax = x;
+    }
+    
+    float latXMax = -90;
+    float latXMin = 90;
+    for (NSNumber *num in self.latitudes) {
+        float x = num.floatValue;
+        if (x < latXMin) latXMin = x;
+        if (x > latXMax) latXMax = x;
+    }
+    
+    CLLocationCoordinate2D topLeftBoundary;
+    topLeftBoundary.longitude = lonXMin;
+    topLeftBoundary.latitude = latXMax;
+    
+    CLLocationCoordinate2D botRightBoundary;
+    botRightBoundary.longitude = lonXMax;
+    botRightBoundary.latitude = latXMin;
+    
+    NSLog(@"LonMin : %lf", lonXMin);
+    NSLog(@"LonMax : %lf", lonXMax);
+    NSLog(@"LatMin : %lf", latXMin);
+    NSLog(@"LatMax : %lf", latXMax);
+    
+    SKBoundingBox *boundingBox;
+    boundingBox.topLeftCoordinate = topLeftBoundary;
+    boundingBox.bottomRightCoordinate = botRightBoundary;
+    
+    [self.mapView fitBounds:boundingBox withPadding:CGSizeMake(0.0, 0.0)];
+    
+    /*
+     SKCoordinateRegion region;
+    region.center = CLLocationCoordinate2DMake((latXMin + latXMax) / 2, (lonXMin + lonXMax) / 2);
+    NSLog(@"centerlat:%lf",region.center.latitude);
+    NSLog(@"centerlon:%lf",region.center.longitude);
+    
+    //region.zoomLevel = 14;
+    //self.mapView.visibleRegion = region;
+    */
+    
+    self.mapView.settings.followUserPosition = NO;
+    
+    /*
+    if (![boundingBox containsLocation:region.center] || region.zoomLevel < 13) {
+        SKCoordinateRegion allowedRegion = region;
+        if (region.center.latitude > boundingBox.topLeftCoordinate.latitude) {
+            allowedRegion.center.latitude = boundingBox.topLeftCoordinate.latitude;
+        } else if (region.center.latitude < boundingBox.bottomRightCoordinate.latitude) {
+            allowedRegion.center.latitude = boundingBox.bottomRightCoordinate.latitude;
+        }
+        
+        if (region.center.longitude > boundingBox.bottomRightCoordinate.longitude) {
+            allowedRegion.center.longitude = boundingBox.bottomRightCoordinate.longitude;
+        } else if (region.center.longitude < boundingBox.topLeftCoordinate.longitude) {
+            allowedRegion.center.longitude = boundingBox.topLeftCoordinate.longitude;
+        }
+        
+        if (region.zoomLevel < 13) {
+            allowedRegion.zoomLevel = 13;
+        } 
+        
+        self.mapView.visibleRegion = allowedRegion;
+        
+    }
+    
+    [[self.view viewWithTag:7] setAlpha:0.0f];
+    self.currentSession.sessionImage = [self captureView:self.view];
+    [self performSelector:@selector(endSession) withObject:self afterDelay:0.1];
+    */
+}
 
 - (void) endSession {
     NSMutableArray *sessionArray = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"SessionArray"]];
@@ -213,6 +306,18 @@
         self.currentSession.speedMax = currentLocation.speed;
     }
     
+    if (self.latitudes == nil) {
+        self.latitudes = [[NSMutableArray alloc] initWithObjects:[NSNumber numberWithFloat:currentLocation.coordinate.latitude], nil];
+        self.longitudes = [[NSMutableArray alloc] initWithObjects:[NSNumber numberWithFloat:currentLocation.coordinate.longitude], nil];
+    }
+    else {
+        [self.latitudes addObject:[NSNumber numberWithFloat:currentLocation.coordinate.latitude]];
+        [self.longitudes addObject:[NSNumber numberWithFloat:currentLocation.coordinate.longitude]];
+    }
+    
+    self.userLatitude = [NSString stringWithFormat:@"%f", currentLocation.coordinate.latitude];
+    self.userLongitude = [NSString stringWithFormat:@"%f", currentLocation.coordinate.longitude];
+    
     [self.positionsArray addObject:currentLocation];
     [self updatePolyLine];
     self.lastLocation = currentLocation;
@@ -233,12 +338,9 @@
 
 -(void) updatePositions {
     //Updating Current User Location
-    NSString *userLatitude = [NSString stringWithFormat:@"%f", self.locationManager.location.coordinate.latitude];
-    NSString *userLongitude = [NSString stringWithFormat:@"%f", self.locationManager.location.coordinate.longitude];
     
-    NSLog(@"ItUpdates");
-    [backendless.userService.currentUser updateProperties:@{@"user_latitude" : userLatitude,
-                                                           @"user_longitude" : userLongitude}];
+    [backendless.userService.currentUser updateProperties:@{@"user_latitude" : self.userLatitude,
+                                                           @"user_longitude" : self.userLongitude}];
     
     [backendless.userService update:backendless.userService.currentUser];
     
@@ -255,13 +357,15 @@
         for (long i = self.friendsArray.count; i < currentPage.count; i++) {
             backendlessFriendUser = [currentPage objectAtIndex:currentPage.count - (i+1)];
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-                FriendUser *newFriend = [[FriendUser alloc] init];
-                NSString *imgURL = [backendlessFriendUser getProperty:@"profilePictureURL"];
-                newFriend.profilePic = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imgURL]]];
-                [self.friendsArray addObject:newFriend];
-                NSLog(@"ArrayCount : %lu",(unsigned long)self.friendsArray.count);
-            });
+            if ([backendlessFriendUser getProperty:@"groupId"] != [backendlessFriendUser getProperty:@"facebookId"]) {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+                    FriendUser *newFriend = [[FriendUser alloc] init];
+                    NSString *imgURL = [backendlessFriendUser getProperty:@"profilePictureURL"];
+                    newFriend.profilePic = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imgURL]]];
+                    [self.friendsArray addObject:newFriend];
+                    NSLog(@"ArrayCount : %lu",(unsigned long)self.friendsArray.count);
+                });
+            }
         }
     }
     

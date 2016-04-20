@@ -20,6 +20,7 @@
     self.speedAverage = [decoder decodeIntegerForKey:@"speedAverage"];
     self.speedMax = [decoder decodeIntegerForKey:@"speedMax"];
     self.sessionDate = [decoder decodeObjectForKey:@"sessionDate"];
+    self.sessionImage = [decoder decodeObjectForKey:@"sessionImage"];
     
     return self;
 }
@@ -29,6 +30,7 @@
     [encoder encodeInteger:self.speedAverage forKey:@"speedAverage"];
     [encoder encodeInteger:self.speedMax forKey:@"speedMax"];
     [encoder encodeObject:self.sessionDate forKey:@"sessionDate"];
+    [encoder encodeObject:self.sessionImage forKey:@"sessionImage"];
 }
 
 @end
